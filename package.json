@@ -1,0 +1,118 @@
+{
+  "name": "qlang-vscode",
+  "displayName": "QLang Support",
+  "description": "Syntax highlighting and execution for QLang scripts",
+  "version": "1.6.0",
+  "publisher": "yyswys-yjyj",
+  "repository":"https://github.com/yyswys-yjyj/questionnaire-vscode_extension",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": ["Programming Languages", "Debuggers"],
+  "activationEvents": [
+    "onLanguage:qlang",
+    "onCommand:qlang.run",
+    "onDebugResolve:qlang"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "qlang",
+        "aliases": ["QLang", "qlang"],
+        "extensions": [".qlg"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "qlang",
+        "scopeName": "source.qlang",
+        "path": "./syntaxes/qlang.tmLanguage.json"
+      }
+    ],
+    "breakpoints": [
+      {
+        "language": "qlang"
+      }
+    ],
+    "commands": [
+      {
+        "command": "qlang.run",
+        "title": "QLang: Run Script"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "qlang.run",
+        "key": "ctrl+shift+q",
+        "when": "editorLangId == qlang"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "qlang.run",
+          "group": "navigation",
+          "when": "editorLangId == qlang"
+        }
+      ]
+    },
+    "debuggers": [
+      {
+        "type": "qlang",
+        "label": "QLang Debugger",
+        "languages": ["qlang"],
+        "configurationAttributes": {
+          "launch": {
+            "required": ["program"],
+            "properties": {
+              "program": {
+                "type": "string",
+                "description": "Path to the .qlg entry file"
+              },
+              "stopOnEntry": {
+                "type": "boolean",
+                "description": "Stop on entry",
+                "default": false
+              }
+            }
+          }
+        },
+        "initialConfigurations": [
+          {
+            "name": "QLang: Run File",
+            "type": "qlang",
+            "request": "launch",
+            "program": "${workspaceFolder}/main.qlg",
+            "stopOnEntry": false
+          }
+        ],
+        "configurationSnippets": [
+          {
+            "label": "QLang: Run File",
+            "body": {
+              "name": "QLang: Run ${fileBasename}",
+              "type": "qlang",
+              "request": "launch",
+              "program": "^\"\\${file}\"",
+              "stopOnEntry": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.70.0",
+    "typescript": "^5.0.0",
+    "vsce": "^2.15.0"
+  }
+}
