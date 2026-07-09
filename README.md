@@ -49,7 +49,7 @@
 主文件需要遵循 [questionnaire](https://github.com/yyswys-yjyj/questionnaire) 中的规范
 
 ### 3.2 断点调试
-直接在程序行号旁单点添加断点即可，随后点击“调试”或通过按下F5调试
+暂时砍掉了这个功能
 
 ### 3.3 关于qid
 当前调试器分配了10个题，但均为固定值
