@@ -1,0 +1,130 @@
+{
+  "scopeName": "source.qlang",
+  "name": "QLang",
+  "fileTypes": ["qlg"],
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#doxygen-comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#operators" },
+    { "include": "#numbers" },
+    { "include": "#functions" },
+    { "include": "#preprocessor" },
+    { "include": "#identifiers" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        { "name": "comment.line.double-slash.qlang", "match": "//.*$" },
+        { "name": "comment.block.qlang", "begin": "/\\*", "end": "\\*/" }
+      ]
+    },
+    "doxygen-comments": {
+      "patterns": [
+        {
+          "name": "comment.block.doxygen.qlang",
+          "begin": "/\\*\\*",
+          "end": "\\*/",
+          "patterns": [
+            { "include": "#doxygen-tags" },
+            { "include": "#doxygen-params" }
+          ]
+        },
+        {
+          "name": "comment.line.doxygen.qlang",
+          "match": "///.*$",
+          "patterns": [
+            { "include": "#doxygen-tags" }
+          ]
+        }
+      ]
+    },
+    "doxygen-tags": {
+      "patterns": [
+        { "match": "@param\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@return\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@returns\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@brief\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@description\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@var\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@arg\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@note\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@warning\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@see\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@author\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@date\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@version\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@since\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@deprecated\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@todo\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@bug\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@example\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@code\\b", "name": "keyword.other.doxygen.qlang" },
+        { "match": "@endcode\\b", "name": "keyword.other.doxygen.qlang" }
+      ]
+    },
+    "doxygen-params": {
+      "patterns": [
+        {
+          "match": "@param\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+          "name": "meta.param.doxygen.qlang",
+          "captures": {
+            "1": { "name": "variable.parameter.doxygen.qlang" }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.qlang",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [{ "name": "constant.character.escape.qlang", "match": "\\\\." }]
+    },
+    "keywords": {
+      "match": "\\b(if|else|while|for|return|break|continue|struct|new|try|catch|throw|using|namespace|true|false|null)\\b",
+      "name": "keyword.control.qlang"
+    },
+    "types": {
+      "match": "\\b(int|float|double|char|string|bool|void|stack|queue|vector|pair|priority_queue|auto)\\b",
+      "name": "storage.type.qlang"
+    },
+    "functions": {
+      "patterns": [
+        {
+          "match": "\\b(printf|cout|print|sizeof|size|strlen|strcmp|strcpy|_gcd|parseInt|abort|main)\\s*\\(",
+          "name": "entity.name.function.qlang",
+          "captures": {
+            "1": { "name": "entity.name.function.qlang" }
+          }
+        },
+        {
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*\\(",
+          "name": "meta.function-call.qlang",
+          "captures": {
+            "1": { "name": "entity.name.function.qlang" }
+          }
+        }
+      ]
+    },
+    "preprocessor": {
+      "patterns": [
+        { "match": "^\\s*#(include|defNS)\\b", "name": "keyword.control.import.qlang" },
+        { "match": "#include\\s*<([^>]+)>", "name": "meta.preprocessor.include.qlang", "captures": { "1": { "name": "string.other.qlang" } } }
+      ]
+    },
+    "operators": {
+      "match": "(->|\\.|::|\\+\\+|--|\\+=|-=|\\*=|/=|%=|&&|\\|\\||==|!=|>=|<=|>|<|\\+|\\-|\\*|/|%|!|&|\\*|\\?)",
+      "name": "keyword.operator.qlang"
+    },
+    "numbers": {
+      "match": "\\b[0-9]+(\\.[0-9]+)?\\b",
+      "name": "constant.numeric.qlang"
+    },
+    "identifiers": {
+      "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
+      "name": "variable.other.qlang"
+    }
+  }
+}

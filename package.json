@@ -2,7 +2,7 @@
   "name": "qlang-vscode",
   "displayName": "QLang Support",
   "description": "Syntax highlighting and execution for QLang scripts",
-  "version": "1.6.0",
+  "version": "1.7.1",
   "publisher": "yyswys-yjyj",
   "repository":"https://github.com/yyswys-yjyj/questionnaire-vscode_extension",
   "engines": {

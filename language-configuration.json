@@ -14,17 +14,20 @@
     { "open": "(", "close": ")" },
     { "open": "\"", "close": "\"" },
     { "open": "'", "close": "'" },
-    { "open": "/*", "close": "*/" }
+    { "open": "/*", "close": "*/" },
+    { "open": "/**", "close": " */", "notIn": ["string"] },
+    { "open": "///", "close": "" }
   ],
   "surroundingPairs": [
     ["{", "}"],
     ["[", "]"],
     ["(", ")"],
     ["\"", "\""],
-    ["'", "'"]
+    ["'", "'"],
+    ["/*", "*/"]
   ],
   "indentationRules": {
-    "increaseIndentPattern": "^(\\s*)(if|else|while|for|struct|try|catch|function|int\\s+main)\\b.*\\{[^}]*$",
+    "increaseIndentPattern": "^\\s*(if|else|while|for|struct|try|catch|function|int\\s+main)\\b.*\\{[^}]*$",
     "decreaseIndentPattern": "^\\s*\\}"
   },
   "folding": {
@@ -33,5 +36,71 @@
       "end": "^\\s*\\/\\/\\s*#endregion\\b"
     }
   },
-  "wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+)"
+  "wordPattern": "(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+)",
+  "onEnterRules": [
+    {
+      "beforeText": "^\\s*/\\*\\*$",
+      "afterText": "",
+      "action": {
+        "indent": "indent",
+        "appendText": " * "
+      }
+    },
+    {
+      "beforeText": "^\\s*/\\*\\*.*$",
+      "afterText": "",
+      "action": {
+        "indent": "indent",
+        "appendText": " * "
+      }
+    },
+    {
+      "beforeText": "^\\s*///\\s*@param\\s+.*$",
+      "afterText": "",
+      "action": {
+        "indent": "indent",
+        "appendText": "/// "
+      }
+    },
+    {
+      "beforeText": "^\\s*\\*\\s*@param\\s+.*$",
+      "afterText": "",
+      "action": {
+        "indent": "indent",
+        "appendText": " * "
+      }
+    },
+    {
+      "beforeText": "^\\s*\\*\\s*@return\\s+.*$",
+      "afterText": "",
+      "action": {
+        "indent": "indent",
+        "appendText": " * "
+      }
+    },
+    {
+      "beforeText": "^\\s*\\*\\s*@brief\\s+.*$",
+      "afterText": "",
+      "action": {
+        "indent": "indent",
+        "appendText": " * "
+      }
+    },
+    {
+      "beforeText": "^\\s*\\*\\s*@note\\s+.*$",
+      "afterText": "",
+      "action": {
+        "indent": "indent",
+        "appendText": " * "
+      }
+    },
+    {
+      "beforeText": "^\\s*\\*\\s*@see\\s+.*$",
+      "afterText": "",
+      "action": {
+        "indent": "indent",
+        "appendText": " * "
+      }
+    }
+  ]
 }
