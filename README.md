@@ -1,6 +1,6 @@
 # questionnaire-vscode_extension
-面向QLang Lib开发者的Microsoft VSCode扩展
-适用版本：v1.7.x
+面向QLang Lib开发者的Microsoft VSCode扩展   
+适用版本：v1.7.x（改自 Questionnaire.Fix v1.7.1）
 
 ## 1.安装
 从release中下载最新的发行版，然后打开Microsoft Visual Studio Code，进入“扩展（Ctrl+Shift+X）”，然后点击搜索框旁边三个点（视图和更多操作...），选择“从 VSIX 安装...”，选择下载的扩展包，然后安装即可
